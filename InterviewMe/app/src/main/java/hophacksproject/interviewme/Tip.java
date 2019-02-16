@@ -12,9 +12,7 @@ import java.util.ArrayList;
 
 public class Tip extends AppCompatActivity {
     LinearLayout linearLayout;
-    String text;
-    String message;
-    ArrayList<Button> btns;
+
     final private String[][] qAndA = {{"What should I do to prepare for my interview?", "What should I" +
             " wear to my interview?", "What should I do during the interview?", "What should I do" +
             " after the interview?", "What kinds of things will I be asked at a job interview?",
@@ -50,20 +48,17 @@ public class Tip extends AppCompatActivity {
 
         for( int i = 0; i < qAndA[0].length; i++){
 
-            text = qAndA[0][i];
-            message = qAndA[1][i];
+            final String text = qAndA[0][i];
+            final String message = qAndA[1][i];
             Button btn = new Button(getApplicationContext());
-            btns.add(btn);
+
             btn.setText(text);
             btn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
             btn.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    AlertDialog alert = new AlertDialog.Builder(Tip.this).create();
-                    alert.setTitle(text);
-                    alert.setMessage(message);
-                    alert.show();
+                    methodAlert(text, message);
                 }
             });
             linearLayout.addView(btn);
@@ -71,5 +66,11 @@ public class Tip extends AppCompatActivity {
 
 
 
+    }
+    public void methodAlert(String text, String message){
+        AlertDialog alert = new AlertDialog.Builder(Tip.this).create();
+        alert.setTitle(text);
+        alert.setMessage(message);
+        alert.show();
     }
 }
