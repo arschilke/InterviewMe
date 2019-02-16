@@ -2,6 +2,7 @@ package hophacksproject.interviewme;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,34 +18,72 @@ public class Chatbot extends AppCompatActivity {
     TextView tv1, tv2;
     Spinner typeInterview;
     int countClicks;
+    ChatResponse chRes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
+
+        countClicks = 0;
 
         tv1 = findViewById(R.id.transcript);
         tv1.setText("");
         editText = findViewById(R.id.editText);
         sendBtn = findViewById(R.id.sendBtn);
 
-        typeInterview.findViewById(R.id.TypeInterviewSpinner);
+        typeInterview = findViewById(R.id.TypeInterviewSpinner);
         tv2 = findViewById(R.id.response);
         tv2.setText("");
+
+        String type = typeInterview.getSelectedItem().toString();
+        char t;
+        switch(type)
+        {
+            case "Technology": t = 't';
+                break;
+            case "Business": t = 'b';
+                break;
+            case "College Application": t = 'c';
+                break;
+            default: t = 'a';
+                break;
+        }
+        tv2.setText("Hello, what is your name?");
+
+        String name = tv1.getText().toString();
+        chRes = new ChatResponse(name, t);
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String text = editText.getText().toString();
 
-                tv1.setText(tv1.getText()+ "\n"+ text);
+                tv1.setText(tv1.getText()+ "\n\n"+ text);
+
+
+                //start interview with 3 general questions, then questions tailored to a specific
+                // type of interview
+                if(countClicks == 0)
+                {
+
+                    tv2.setText(tv2.getText() + "\n\n" + chRes.beginInterview());
+                }
+                else if(countClicks < 3)
+                {
+                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
+                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askGenQuestion());
+                }
+                else
+                    {
+                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
+                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
+                }
+
+
+                editText.setText("");
                 countClicks++;
-
-
-                //send to algorithm
-                //String input (text) and spinner (typeInterview.getSelectedItem())
-                String result = "";
-                // retreve algo results and add to tv2
-                tv2.setText(result);
 
             }
         });

@@ -57,20 +57,34 @@ public class ChatResponse
         return genQuestions[random.nextInt(genQuestions.length)];
     }
 
-    public String askTechQuestion()
+    private String askTechQuestion()
     {
         return techQuestions[random.nextInt(techQuestions.length)];
     }
 
-    public String askBusinessQuestion()
+    private String askBusinessQuestion()
     {
         return businessQuestions[random.nextInt(businessQuestions.length)];
     }
 
-    public String askCollegeQuestion()
+    private String askCollegeQuestion()
     {
         return collegeAppQuestions[random.nextInt(collegeAppQuestions.length)];
     }
+
+    public String askTypeQuestion()
+    {
+        if(iFlag == 't')
+            return this.askTechQuestion();
+        else if(iFlag == 'b')
+            return this.askBusinessQuestion();
+        else if(iFlag == 'c')
+            return askCollegeQuestion();
+        else
+            return askGenQuestion();
+
+    }
+
 
     public int keyWordsInResponse(String response)
     {
