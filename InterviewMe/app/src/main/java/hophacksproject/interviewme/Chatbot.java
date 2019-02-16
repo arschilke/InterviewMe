@@ -16,6 +16,7 @@ public class Chatbot extends AppCompatActivity {
     EditText editText;
     TextView tv1, tv2;
     Spinner typeInterview;
+    int countClicks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class Chatbot extends AppCompatActivity {
 
         typeInterview.findViewById(R.id.TypeInterviewSpinner);
         tv2 = findViewById(R.id.response);
+        tv2.setText("");
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +37,7 @@ public class Chatbot extends AppCompatActivity {
                 String text = editText.getText().toString();
 
                 tv1.setText(tv1.getText()+ "\n"+ text);
+                countClicks++;
 
 
                 //send to algorithm
