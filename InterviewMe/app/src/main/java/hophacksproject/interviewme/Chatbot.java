@@ -19,6 +19,7 @@ public class Chatbot extends AppCompatActivity {
     Spinner typeInterview;
     int countClicks;
     ChatResponse chRes;
+    char t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class Chatbot extends AppCompatActivity {
         tv2.setText("");
 
         String type = typeInterview.getSelectedItem().toString();
-        char t;
+
         switch(type)
         {
             case "Technology": t = 't';
@@ -51,8 +52,7 @@ public class Chatbot extends AppCompatActivity {
         }
         tv2.setText("Hello, what is your name?");
 
-        String name = tv1.getText().toString();
-        chRes = new ChatResponse(name, t);
+
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,7 +67,8 @@ public class Chatbot extends AppCompatActivity {
                 // type of interview
                 if(countClicks == 0)
                 {
-
+                    String name = editText.getText().toString();
+                    chRes = new ChatResponse(name, t);
                     tv2.setText(tv2.getText() + "\n\n" + chRes.beginInterview());
                 }
                 else if(countClicks < 3)

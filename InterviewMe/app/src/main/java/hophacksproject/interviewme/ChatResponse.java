@@ -29,7 +29,7 @@ public class ChatResponse
             "contribute to this school?"};
 
     //key words in an array
-    private String[] keyWords = {"um", "like", "well", "stuff", "things"};
+    private String[] keyWords = {"um", "like", "well", "stuff", "things", "uh", "ugh"};
 
     //save interviewee's name
     public String name;
@@ -47,9 +47,9 @@ public class ChatResponse
 
     public String beginInterview()
     {
-        String str = "Hello, " + name + " my name is Steve, thanks for coming to see us " +
-                "for your interview today. We are going to begin the interview today with a few " +
-                "general questions. ";
+        String str = name + ", my name is Steve, it's nice to meet you, thanks for coming to see" +
+                " us for your interview today. We are going to begin the interview today with a " +
+                "few general questions. ";
         str += genQuestions[random.nextInt(genQuestions.length)];
         return str;
     }
