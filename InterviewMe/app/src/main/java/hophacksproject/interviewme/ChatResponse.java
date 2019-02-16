@@ -1,6 +1,8 @@
 package hophacksproject.interviewme;
 
+import java.util.Iterator;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class ChatResponse
 {
@@ -86,21 +88,27 @@ public class ChatResponse
     }
 
 
-    public int keyWordsInResponse(String response)
+    public ArrayList<Integer> keyWordsInResponse(String response)
     {
+        ArrayList<Integer> indexes = new ArrayList<>();
         for(int i = 0; i < keyWords.length; i++)
             if(response.contains(keyWords[i]))
-                return i;
-         return -42;
+                indexes.add(i);
+         return indexes;
 
     }
 
     public String analyzeResponse(String response)
     {
         String str = "";
-        if(keyWordsInResponse(response) >= 0)
-            str += "Try to avoid using words like '" + keyWords[keyWordsInResponse(response)]
-                    + "' during your interview. ";
+        ArrayList<Integer> indexes = keyWordsInResponse(response);
+        if(!indexes.isEmpty())
+        {
+            str += "Try to avoid using words like ";
+            for(Iterator<Integer> iter = indexes.iterator(); iter.hasNext();)
+             str +=  " '" + keyWords[iter.next()] + "' ";
+            str += " during your interview. ";
+        }
 
         if(response.length() > 150)
             str += "Your response was a little too long, try to keep your responses to about 60 " +
