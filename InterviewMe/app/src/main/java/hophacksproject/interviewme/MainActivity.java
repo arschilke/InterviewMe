@@ -9,7 +9,6 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     Button interviewChat;
     Button tipButton;
-    Button testChatResponse;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +35,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        testChatResponse = findViewById(R.id.testChatBtn);
-        testChatResponse.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ChatResponse cr = new ChatResponse("mollie", 't');
-                System.out.println(cr.analyzeResponse("HI, um!"));
-            }
-        });
     }
 
 }
