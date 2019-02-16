@@ -1,13 +1,20 @@
 package hophacksproject.interviewme;
 
+import java.util.Iterator;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class ChatResponse
 {
     //questions in an array
     private String[] genQuestions = {"Tell me a little bit about yourself.",
             "Where do you see yourself in five years?",
-            "Tell me about a challenge you've faced, how did you overcome it?"};
+            "Tell me about a challenge you've faced, how did you overcome it?", "If I asked your " +
+            "best friend to describe you in three words, how do you think they would do it?",
+            "What is something you want me to know about you that isn't on your application" +
+            " or resume?", "How did you become interested in your field of study?",
+            "What have been some of your favorite courses that you have taken thus far?",
+            "Who do you consider a role model?", "What is your favorite book?"};
     private String[] techQuestions = {"What programming language are you most familiar with?",
             "How do you keep your technology skills current?", "What are you favorite and least " +
             "favorite technology products?", "Tell me about a tech project that you've worked on" +
@@ -21,17 +28,21 @@ public class ChatResponse
             " make a decision without much information.", "What do you know about our company?",
             "Why do you want this position?", "Why should we hire you, what can you bring to our " +
             "company?"};
-    private String[] collegeAppQuestions = {"Why are you interested in our School?", "What do" +
+    private String[] collegeAppQuestions = {"Why are you interested in our school?", "What do" +
             " you plan to major in and why?", "What are your academic strengths?", "What are your" +
             " academic weaknesses and how do you overcome them?", "What do you plan to " +
-            "contribute to this school?"};
+            "contribute to this school?", "What would you change about your high school?",
+            "Why do you want to go to college?"};
 
     //key words in an array
-    private String[] keyWords = {"um", "like", "well", "stuff", "things"};
+    private String[] keyWords = {"um", "like", "well", "stuff", "things", "uh", "ugh"};
 
-    //save interviewee's name
+    private ArrayList<Integer> usedGenQuestions;
+    private ArrayList<Integer> usedTechQuestions;
+    private ArrayList<Integer> usedBusQuestions;
+    private ArrayList<Integer> usedColAppQuestions;
+
     public String name;
-    //type of interview flag
     public char iFlag; //'t' = tech, 'b' = business, 'c' = college
     private Random random;
 
@@ -40,53 +51,99 @@ public class ChatResponse
         this.name = name;
         this.iFlag = interviewFlag;
         this.random = new Random();
+        this.usedGenQuestions = new ArrayList<>();
+        this.usedTechQuestions = new ArrayList<>();
+        this.usedBusQuestions = new ArrayList<>();
+        this.usedColAppQuestions = new ArrayList<>();
     }
 
 
     public String beginInterview()
     {
-        String str = "Hello, " + name + " my name is Steve, thanks for coming to see us " +
-                "for your interview today. We are going to begin the interview today with a few " +
-                "general questions. ";
-        str += genQuestions[random.nextInt(genQuestions.length)];
+        String str = name + ", my name is Steve, it's nice to meet you, thanks for coming to see" +
+                " us for your interview today. We are going to begin the interview today with a " +
+                "few general questions. ";
+        int i = random.nextInt(genQuestions.length);
+        this.usedGenQuestions.add(i);
+        str += genQuestions[i];
         return str;
     }
 
     public String askGenQuestion()
     {
-        return genQuestions[random.nextInt(genQuestions.length)];
+        int i = random.nextInt(genQuestions.length);
+        while(usedGenQuestions.contains(i))
+            i = random.nextInt(genQuestions.length);
+
+        this.usedGenQuestions.add(i);
+        return genQuestions[i];
     }
 
-    public String askTechQuestion()
+    private String askTechQuestion()
     {
-        return techQuestions[random.nextInt(techQuestions.length)];
+        int i = random.nextInt(techQuestions.length);
+        while(usedTechQuestions.contains(i))
+            i = random.nextInt(techQuestions.length);
+
+        this.usedTechQuestions.add(i);
+        return techQuestions[i];
     }
 
-    public String askBusinessQuestion()
+    private String askBusinessQuestion()
     {
-        return businessQuestions[random.nextInt(businessQuestions.length)];
+        int i = random.nextInt(businessQuestions.length);
+        while(usedBusQuestions.contains(i))
+            i = random.nextInt(businessQuestions.length);
+
+        this.usedBusQuestions.add(i);
+        return businessQuestions[i];
     }
 
-    public String askCollegeQuestion()
+    private String askCollegeQuestion()
     {
-        return collegeAppQuestions[random.nextInt(collegeAppQuestions.length)];
+        int i = random.nextInt(collegeAppQuestions.length);
+        while(usedColAppQuestions.contains(i))
+            random.nextInt(businessQuestions.length);
+
+        this.usedColAppQuestions.add(i);
+        return collegeAppQuestions[i];
     }
 
-    public int keyWordsInResponse(String response)
+    public String askTypeQuestion()
     {
+        if(iFlag == 't')
+            return this.askTechQuestion();
+        else if(iFlag == 'b')
+            return this.askBusinessQuestion();
+        else if(iFlag == 'c')
+            return askCollegeQuestion();
+        else
+            return askGenQuestion();
+
+    }
+
+
+    public ArrayList<Integer> keyWordsInResponse(String response)
+    {
+        ArrayList<Integer> indexes = new ArrayList<>();
         for(int i = 0; i < keyWords.length; i++)
             if(response.contains(keyWords[i]))
-                return i;
-         return -42;
+                indexes.add(i);
+         return indexes;
 
     }
 
     public String analyzeResponse(String response)
     {
         String str = "";
-        if(keyWordsInResponse(response) >= 0)
-            str += "Try to avoid using words like '" + keyWords[keyWordsInResponse(response)]
-                    + "' during your interview. ";
+        ArrayList<Integer> indexes = keyWordsInResponse(response);
+        if(!indexes.isEmpty())
+        {
+            str += "Try to avoid using words like ";
+            for(Iterator<Integer> iter = indexes.iterator(); iter.hasNext();)
+             str +=  " '" + keyWords[iter.next()] + "' ";
+            str += " during your interview. ";
+        }
 
         if(response.length() > 150)
             str += "Your response was a little too long, try to keep your responses to about 60 " +
