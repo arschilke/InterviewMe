@@ -23,10 +23,11 @@ public class Chatbot extends AppCompatActivity {
     ChatResponse chRes;
     char t;
     LinearLayout linearLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatbot);
+        setContentView(R.layout.activity_chatbox);
 
 
         countClicks = 0;
@@ -42,26 +43,24 @@ public class Chatbot extends AppCompatActivity {
 
         String type = typeInterview.getSelectedItem().toString();
 
-        switch(type)
-        {
-            case "Technology": t = 't';
+        switch (type) {
+            case "Technology":
+                t = 't';
                 break;
-            case "Business": t = 'b';
+            case "Business":
+                t = 'b';
                 break;
-            case "College Application": t = 'c';
+            case "College Application":
+                t = 'c';
                 break;
-            default: t = 'a';
+            default:
+                t = 'a';
                 break;
         }
         tv2.setText("Hello, what is your name?");
 
 
-
-
-
-         linearLayout = (LinearLayout) findViewById(R.id.ConvoLayout);
-
-
+        linearLayout = (LinearLayout) findViewById(R.id.ConvoLayout);
 
 
         sendBtn.setOnClickListener(new View.OnClickListener() {
@@ -82,32 +81,25 @@ public class Chatbot extends AppCompatActivity {
                 textView2.setGravity(Gravity.RIGHT);
                 //start interview with 3 general questions, then questions tailored to a specific
                 // type of interview
-                if(countClicks == 0)
-                {
+                if (countClicks == 0) {
                     String name = editText.getText().toString();
                     chRes = new ChatResponse(name, t);
                     textView2.setText(textView2.getText() + "\n\n" + chRes.beginInterview());
 
-                }
-                else if(countClicks < 3)
-                {
+                } else if (countClicks < 3) {
                     textView2.setText(textView2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
                     textView2.setText(textView2.getText().toString() + "\n\n" + chRes.askGenQuestion());
 
-                }
-                else
-                    {
+                } else {
                     textView2.setText(textView2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
                     textView2.setText(textView2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
 
                 }
                 linearLayout.addView(textView2);
-                //editText.setText("");
+                editText.setText("");
                 countClicks++;
 
             }
         });
-
     }
-
 }
