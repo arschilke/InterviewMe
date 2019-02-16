@@ -53,6 +53,7 @@ public class Tip extends AppCompatActivity {
             Button btn = new Button(getApplicationContext());
 
             btn.setText(text);
+            btn.setTextAppearance(getApplicationContext(), R.style.TipButton);
             btn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
             btn.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             btn.setOnClickListener(new View.OnClickListener() {
