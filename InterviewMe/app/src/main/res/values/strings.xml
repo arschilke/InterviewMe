@@ -3,9 +3,8 @@
     <string name="interview_tips_and_tricks">Interview Tips and Tricks</string>
     <string name="interview_chat">Interview Chat</string>
     <string-array name="Types">
-        <item>General</item>
-        <item>Technical</item>
+        <item>Technology</item>
         <item>Business</item>
-        <item>Misc.</item>
+        <item>College Application</item>
     </string-array>
 </resources>
