@@ -9,7 +9,12 @@ public class ChatResponse
     //questions in an array
     private String[] genQuestions = {"Tell me a little bit about yourself.",
             "Where do you see yourself in five years?",
-            "Tell me about a challenge you've faced, how did you overcome it?"};
+            "Tell me about a challenge you've faced, how did you overcome it?", "If I asked your " +
+            "best friend to describe you in three words, how do you think they would do it?",
+            "What is something you want me to know about you that isn't on your application" +
+            " or resume?", "How did you become interested in your field of study?",
+            "What have been some of your favorite courses that you have taken thus far?",
+            "Who do you consider a role model?", "What is your favorite book?"};
     private String[] techQuestions = {"What programming language are you most familiar with?",
             "How do you keep your technology skills current?", "What are you favorite and least " +
             "favorite technology products?", "Tell me about a tech project that you've worked on" +
@@ -23,10 +28,11 @@ public class ChatResponse
             " make a decision without much information.", "What do you know about our company?",
             "Why do you want this position?", "Why should we hire you, what can you bring to our " +
             "company?"};
-    private String[] collegeAppQuestions = {"Why are you interested in our School?", "What do" +
+    private String[] collegeAppQuestions = {"Why are you interested in our school?", "What do" +
             " you plan to major in and why?", "What are your academic strengths?", "What are your" +
             " academic weaknesses and how do you overcome them?", "What do you plan to " +
-            "contribute to this school?"};
+            "contribute to this school?", "What would you change about your high school?",
+            "Why do you want to go to college?"};
 
     //key words in an array
     private String[] keyWords = {"um", "like", "well", "stuff", "things", "uh", "ugh"};
