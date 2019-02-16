@@ -33,6 +33,7 @@ public class Chatbot extends AppCompatActivity {
         countClicks = 0;
 
         tv1 = findViewById(R.id.transcript);
+        tv1.setText("");
 
         editText = findViewById(R.id.editText);
         sendBtn = findViewById(R.id.sendBtn);

@@ -147,11 +147,13 @@ public class ChatResponse
 
         if(response.length() > 150)
             str += "Your response was a little too long, try to keep your responses to about 60 " +
-                    "seconds long. ";
+                    "seconds long, as you do not want to come off as self-centered or " +
+                    "braggadocious.";
 
         if(response.length() < 20)
             str += "Your response was a little too short, try to keep your responses about 60 " +
-                    "seconds long. ";
+                    "seconds long, it is important to let the interviewer get to know you so " +
+                    "that they are able to determine that you are the best candidate for the job. ";
 
         return str;
     }
