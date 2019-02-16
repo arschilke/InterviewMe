@@ -29,7 +29,7 @@ public class Chatbot extends AppCompatActivity {
         countClicks = 0;
 
         tv1 = findViewById(R.id.transcript);
-        tv1.setText("");
+
         editText = findViewById(R.id.editText);
         sendBtn = findViewById(R.id.sendBtn);
 
@@ -69,60 +69,47 @@ public class Chatbot extends AppCompatActivity {
                 {
                     String name = editText.getText().toString();
                     chRes = new ChatResponse(name, t);
-                    tv2.setText(tv2.getText() + "\n\n" + chRes.beginInterview());
+                    tv2.setText(tv2.getText() + "\n\n" + fiftyChar(chRes.beginInterview()));
                     tv1.setText("\n\n\n\n");
                 }
                 else if(countClicks < 3)
                 {
-                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
-                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askGenQuestion());
+                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.analyzeResponse(text)));
+                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.askGenQuestion()));
                     tv1.setText("\n\n\n\n");
                 }
                 else
                     {
-                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
-                    tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
+                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.analyzeResponse(text)));
+                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.askTypeQuestion()));
                         tv1.setText("\n\n\n\n");
                 }
-                boolean breakMe = false;
-                String str = tv2.getText().toString();
-                String strResult = "";
-                for (int i = 0; i<tv2.getText().length();i++){
-                    if(i%50 == 0){
-                        breakMe = true;
-                    }
-                    char c = str.charAt(i);
 
-                    if (breakMe && c == ' '){
-                       strResult += "\n";
-                    }
-                    strResult += c;
-
-                }
-                tv2.setText(strResult);
-
-                breakMe = false;
-                str = tv1.getText().toString();
-                strResult = "";
-                for (int i = 0; i<tv1.getText().length();i++){
-                    if(i%50 == 0){
-                        breakMe = true;
-                    }
-                    char c = str.charAt(i);
-
-                    if (breakMe && c == ' '){
-                        strResult += "\n";
-                    }
-                    strResult += c;
-
-                }
-                tv1.setText(strResult);
-
-                editText.setText("");
+                //editText.setText("");
                 countClicks++;
 
             }
         });
+
+    }
+
+    public String fiftyChar(String str){
+        boolean breakMe = false;
+        String strResult = "";
+        for (int i = 0; i<str.length();i++){
+            if(i%50 == 0 && i>0){
+                breakMe = true;
+            }
+            char c = str.charAt(i);
+
+            if (breakMe && c == ' '){
+                strResult += "\n";
+                breakMe = false;
+            }
+            strResult += c;
+
+        }
+        return strResult;
 
     }
 }
