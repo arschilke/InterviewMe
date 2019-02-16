@@ -27,7 +27,7 @@ public class Chatbot extends AppCompatActivity {
         editText = findViewById(R.id.editText);
         sendBtn = findViewById(R.id.sendBtn);
 
-        typeInterview.findViewById(R.id.TypeInterviewSpinner);
+        typeInterview = findViewById(R.id.TypeInterviewSpinner);
         tv2 = findViewById(R.id.response);
         tv2.setText("");
 
