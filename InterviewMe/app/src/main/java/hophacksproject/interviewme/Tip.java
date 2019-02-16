@@ -1,14 +1,15 @@
 package hophacksproject.interviewme;
 
+import android.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
 public class Tip extends AppCompatActivity {
-    LinearLayout linearLayout = findViewById(R.id.ll);
-    ArrayList<String> array = new ArrayList<String>();
 
     private String[][] qAndA = {{"What should I do to prepare for my interview?", "What should I" +
             " wear to my interview?", "What should I do during the interview?", "What should I do" +
@@ -35,13 +36,33 @@ public class Tip extends AppCompatActivity {
             " the others who are applying for the position. You should be thorough and specific" +
             " in all information that you provide and do your best to stand out."}};
 
+    LinearLayout linearLayout;
+    String [][]  array;
+    String text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip);
+        linearLayout = findViewById(R.id.ll);
 
-        for( int i = 0; i < array.size(); i++){
 
+        for( int i = 0; i < array.length; i++){
+            text = array[0][i];
+            Button btn = new Button(getApplicationContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+
+            builder.setMessage(array[1][i]);
+            builder.setTitle(text);
+
+            final AlertDialog dialog = builder.create();
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.show();  //<-- See This!
+                }
+            });
+            linearLayout.addView(btn);
         }
 
 
