@@ -20,30 +20,31 @@
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/editText">
 
-                <LinearLayout android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:orientation="horizontal">
+            <LinearLayout
+                android:id="@+id/ConvoLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
 
-                    <TextView
-                        android:id="@+id/transcript"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="@string/sample_text"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/colorPrimaryDark" />
+                <TextView
+                    android:id="@+id/transcript"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/sample_text"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/colorPrimaryDark" />
 
-                    <TextView
-                        android:id="@+id/response"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="@string/message"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="@color/colorPrimary" />
+                <TextView
+                    android:id="@+id/response"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/message"
+                    android:textAlignment="viewEnd"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@color/colorPrimary" />
 
-                </LinearLayout>
+            </LinearLayout>
 
 
         </ScrollView>

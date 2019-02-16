@@ -3,11 +3,13 @@ package hophacksproject.interviewme;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,11 +22,12 @@ public class Chatbot extends AppCompatActivity {
     int countClicks;
     ChatResponse chRes;
     char t;
-
+    LinearLayout linearLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbot);
+
 
         countClicks = 0;
 
@@ -54,37 +57,51 @@ public class Chatbot extends AppCompatActivity {
 
 
 
+
+
+         linearLayout = (LinearLayout) findViewById(R.id.ConvoLayout);
+
+
+
+
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String text = editText.getText().toString();
+                TextView textView = new TextView(getApplicationContext());
 
-                tv1.setText(tv1.getText()+ "\n"+ text);
+                textView.setText(text);
+                textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+                linearLayout.addView(textView);
 
 
+                TextView textView2 = new TextView(getApplicationContext());
+
+                textView2.setTextColor(getResources().getColor(R.color.colorPrimary));
+                textView2.setGravity(Gravity.RIGHT);
                 //start interview with 3 general questions, then questions tailored to a specific
                 // type of interview
                 if(countClicks == 0)
                 {
                     String name = editText.getText().toString();
                     chRes = new ChatResponse(name, t);
-                    tv2.setText(tv2.getText() + "\n\n" + fiftyChar(chRes.beginInterview()));
-                    tv1.setText("\n\n\n\n");
+                    textView2.setText(textView2.getText() + "\n\n" + chRes.beginInterview());
+
                 }
                 else if(countClicks < 3)
                 {
-                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.analyzeResponse(text)));
-                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.askGenQuestion()));
-                    tv1.setText("\n\n\n\n");
+                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
+                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.askGenQuestion());
+
                 }
                 else
                     {
-                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.analyzeResponse(text)));
-                    tv2.setText(tv2.getText().toString() + "\n\n" + fiftyChar(chRes.askTypeQuestion()));
-                        tv1.setText("\n\n\n\n");
-                }
+                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
+                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
 
+                }
+                linearLayout.addView(textView2);
                 //editText.setText("");
                 countClicks++;
 
@@ -93,23 +110,4 @@ public class Chatbot extends AppCompatActivity {
 
     }
 
-    public String fiftyChar(String str){
-        boolean breakMe = false;
-        String strResult = "";
-        for (int i = 0; i<str.length();i++){
-            if(i%50 == 0 && i>0){
-                breakMe = true;
-            }
-            char c = str.charAt(i);
-
-            if (breakMe && c == ' '){
-                strResult += "\n";
-                breakMe = false;
-            }
-            strResult += c;
-
-        }
-        return strResult;
-
-    }
 }
