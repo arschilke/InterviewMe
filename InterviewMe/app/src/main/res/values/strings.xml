@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">InterviewMe</string>
+    <string name="interview_tips_and_tricks">Interview Tips and Tricks</string>
+    <string name="interview_chat">Interview Chat</string>
 </resources>
