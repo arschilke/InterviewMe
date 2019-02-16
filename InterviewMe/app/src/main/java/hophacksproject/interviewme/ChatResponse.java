@@ -31,9 +31,12 @@ public class ChatResponse
     //key words in an array
     private String[] keyWords = {"um", "like", "well", "stuff", "things", "uh", "ugh"};
 
-    //save interviewee's name
+    private ArrayList<Integer> usedGenQuestions;
+    private ArrayList<Integer> usedTechQuestions;
+    private ArrayList<Integer> usedBusQuestions;
+    private ArrayList<Integer> usedColAppQuestions;
+
     public String name;
-    //type of interview flag
     public char iFlag; //'t' = tech, 'b' = business, 'c' = college
     private Random random;
 
@@ -42,6 +45,10 @@ public class ChatResponse
         this.name = name;
         this.iFlag = interviewFlag;
         this.random = new Random();
+        this.usedGenQuestions = new ArrayList<>();
+        this.usedTechQuestions = new ArrayList<>();
+        this.usedBusQuestions = new ArrayList<>();
+        this.usedColAppQuestions = new ArrayList<>();
     }
 
 
@@ -56,7 +63,9 @@ public class ChatResponse
 
     public String askGenQuestion()
     {
-        return genQuestions[random.nextInt(genQuestions.length)];
+        int i = random.nextInt(genQuestions.length);
+        this.usedGenQuestions.add(i);
+        return genQuestions[i];
     }
 
     private String askTechQuestion()
