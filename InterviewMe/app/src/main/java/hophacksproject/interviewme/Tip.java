@@ -1,6 +1,7 @@
 package hophacksproject.interviewme;
 
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +11,11 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 public class Tip extends AppCompatActivity {
-
-    private String[][] qAndA = {{"What should I do to prepare for my interview?", "What should I" +
+    LinearLayout linearLayout;
+    String text;
+    String message;
+    ArrayList<Button> btns;
+    final private String[][] qAndA = {{"What should I do to prepare for my interview?", "What should I" +
             " wear to my interview?", "What should I do during the interview?", "What should I do" +
             " after the interview?", "What kinds of things will I be asked at a job interview?",
             "What do future employers want to hear from me?"}, {"Before the day of your " +
@@ -36,9 +40,7 @@ public class Tip extends AppCompatActivity {
             " the others who are applying for the position. You should be thorough and specific" +
             " in all information that you provide and do your best to stand out."}};
 
-    LinearLayout linearLayout;
-    String [][]  array;
-    String text;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,20 +48,22 @@ public class Tip extends AppCompatActivity {
         linearLayout = findViewById(R.id.ll);
 
 
-        for( int i = 0; i < array.length; i++){
-            text = array[0][i];
+        for( int i = 0; i < qAndA[0].length; i++){
+
+            text = qAndA[0][i];
+            message = qAndA[1][i];
             Button btn = new Button(getApplicationContext());
-            AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-
-            builder.setMessage(array[1][i]);
-            builder.setTitle(text);
-
-            final AlertDialog dialog = builder.create();
-
+            btns.add(btn);
+            btn.setText(text);
+            btn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+            btn.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    dialog.show();  //<-- See This!
+                    AlertDialog alert = new AlertDialog.Builder(Tip.this).create();
+                    alert.setTitle(text);
+                    alert.setMessage(message);
+                    alert.show();
                 }
             });
             linearLayout.addView(btn);
