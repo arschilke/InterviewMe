@@ -16,20 +16,20 @@ public class MainActivity extends AppCompatActivity {
 
         tipButton = findViewById(R.id.tipBtn);
 
-        tipButton.setOnClickListener(new View.OnClickListener() {
+       /* tipButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent tipIntent = new Intent(getApplicationContext(), tipActivity.class);
                 startActivity(tipIntent);
             }
-        });
+        });*/
 
         interviewChat = findViewById(R.id.chatBtn);
 
         interviewChat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent chatBot = new Intent(getApplicationContext(), chatActivity.class);
+                Intent chatBot = new Intent(getApplicationContext(), Chatbot.class);
                 startActivity(chatBot);
             }
         });
