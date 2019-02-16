@@ -84,7 +84,39 @@ public class Chatbot extends AppCompatActivity {
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
                         tv1.setText("\n\n\n\n");
                 }
+                boolean breakMe = false;
+                String str = tv2.getText().toString();
+                String strResult = "";
+                for (int i = 0; i<tv2.getText().length();i++){
+                    if(i%50 == 0){
+                        breakMe = true;
+                    }
+                    char c = str.charAt(i);
 
+                    if (breakMe && c == ' '){
+                       strResult += "\n";
+                    }
+                    strResult += c;
+
+                }
+                tv2.setText(strResult);
+
+                breakMe = false;
+                str = tv1.getText().toString();
+                strResult = "";
+                for (int i = 0; i<tv1.getText().length();i++){
+                    if(i%50 == 0){
+                        breakMe = true;
+                    }
+                    char c = str.charAt(i);
+
+                    if (breakMe && c == ' '){
+                        strResult += "\n";
+                    }
+                    strResult += c;
+
+                }
+                tv1.setText(strResult);
 
                 editText.setText("");
                 countClicks++;
