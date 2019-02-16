@@ -24,12 +24,12 @@ public class Chatbot extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chatbot);
+        setContentView(R.layout.activity_chatbox);
 
         countClicks = 0;
 
         tv1 = findViewById(R.id.transcript);
-        tv1.setText("");
+        tv1.setText("Testing...");
         editText = findViewById(R.id.editText);
         sendBtn = findViewById(R.id.sendBtn);
 
@@ -60,7 +60,7 @@ public class Chatbot extends AppCompatActivity {
 
                 String text = editText.getText().toString();
 
-                tv1.setText(tv1.getText()+ "\n"+ text);
+                tv1.setText(tv1.getText() + "\n" + text);
 
 
                 //start interview with 3 general questions, then questions tailored to a specific
@@ -70,53 +70,17 @@ public class Chatbot extends AppCompatActivity {
                     String name = editText.getText().toString();
                     chRes = new ChatResponse(name, t);
                     tv2.setText(tv2.getText() + "\n\n" + chRes.beginInterview());
-                    tv1.setText("\n\n\n\n");
                 }
                 else if(countClicks < 3)
                 {
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askGenQuestion());
-                    tv1.setText("\n\n\n\n");
                 }
                 else
                     {
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
-                        tv1.setText("\n\n\n\n");
                 }
-                boolean breakMe = false;
-                String str = tv2.getText().toString();
-                String strResult = "";
-                for (int i = 0; i<tv2.getText().length();i++){
-                    if(i%50 == 0){
-                        breakMe = true;
-                    }
-                    char c = str.charAt(i);
-
-                    if (breakMe && c == ' '){
-                       strResult += "\n";
-                    }
-                    strResult += c;
-
-                }
-                tv2.setText(strResult);
-
-                breakMe = false;
-                str = tv1.getText().toString();
-                strResult = "";
-                for (int i = 0; i<tv1.getText().length();i++){
-                    if(i%50 == 0){
-                        breakMe = true;
-                    }
-                    char c = str.charAt(i);
-
-                    if (breakMe && c == ' '){
-                        strResult += "\n";
-                    }
-                    strResult += c;
-
-                }
-                tv1.setText(strResult);
 
                 editText.setText("");
                 countClicks++;
