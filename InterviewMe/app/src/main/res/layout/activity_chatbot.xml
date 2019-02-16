@@ -12,21 +12,30 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/transcript"
+            android:id="@+id/response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Message"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/transcript"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="viewEnd"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             android:textColor="@color/colorPrimaryDark" />
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="501dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="Enter Message"
-            android:textColor="@color/colorPrimaryDark" />
+            android:inputType="textPersonName"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <Button
             android:id="@+id/sendBtn"
@@ -34,7 +43,20 @@
             android:layout_height="wrap_content"
             android:background="@color/colorAccentDark"
             android:text="Send"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <TextView
+            android:id="@+id/TV3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type of Interview"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
+        <Spinner
+            android:id="@+id/TypeInterviewSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:entries="@array/Types" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
