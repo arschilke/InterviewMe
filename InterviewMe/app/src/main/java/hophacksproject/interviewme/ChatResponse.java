@@ -57,30 +57,50 @@ public class ChatResponse
         String str = name + ", my name is Steve, it's nice to meet you, thanks for coming to see" +
                 " us for your interview today. We are going to begin the interview today with a " +
                 "few general questions. ";
-        str += genQuestions[random.nextInt(genQuestions.length)];
+        int i = random.nextInt(genQuestions.length);
+        this.usedGenQuestions.add(i);
+        str += genQuestions[i];
         return str;
     }
 
     public String askGenQuestion()
     {
         int i = random.nextInt(genQuestions.length);
+        while(usedGenQuestions.contains(i))
+            i = random.nextInt(genQuestions.length);
+
         this.usedGenQuestions.add(i);
         return genQuestions[i];
     }
 
     private String askTechQuestion()
     {
-        return techQuestions[random.nextInt(techQuestions.length)];
+        int i = random.nextInt(techQuestions.length);
+        while(usedTechQuestions.contains(i))
+            i = random.nextInt(techQuestions.length);
+
+        this.usedTechQuestions.add(i);
+        return techQuestions[i];
     }
 
     private String askBusinessQuestion()
     {
-        return businessQuestions[random.nextInt(businessQuestions.length)];
+        int i = random.nextInt(businessQuestions.length);
+        while(usedBusQuestions.contains(i))
+            i = random.nextInt(businessQuestions.length);
+
+        this.usedBusQuestions.add(i);
+        return businessQuestions[i];
     }
 
     private String askCollegeQuestion()
     {
-        return collegeAppQuestions[random.nextInt(collegeAppQuestions.length)];
+        int i = random.nextInt(collegeAppQuestions.length);
+        while(usedColAppQuestions.contains(i))
+            random.nextInt(businessQuestions.length);
+
+        this.usedColAppQuestions.add(i);
+        return collegeAppQuestions[i];
     }
 
     public String askTypeQuestion()

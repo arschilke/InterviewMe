@@ -60,7 +60,7 @@ public class Chatbot extends AppCompatActivity {
 
                 String text = editText.getText().toString();
 
-                tv1.setText(tv1.getText()+ "\n\n"+ text);
+                tv1.setText(tv1.getText()+ "\n"+ text);
 
 
                 //start interview with 3 general questions, then questions tailored to a specific
@@ -70,16 +70,19 @@ public class Chatbot extends AppCompatActivity {
                     String name = editText.getText().toString();
                     chRes = new ChatResponse(name, t);
                     tv2.setText(tv2.getText() + "\n\n" + chRes.beginInterview());
+                    tv1.setText("\n\n\n\n");
                 }
                 else if(countClicks < 3)
                 {
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askGenQuestion());
+                    tv1.setText("\n\n\n\n");
                 }
                 else
                     {
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
                     tv2.setText(tv2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
+                        tv1.setText("\n\n\n\n");
                 }
 
 
