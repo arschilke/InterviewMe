@@ -1,5 +1,6 @@
 # InterviewMe
-![alt text][InterviewMe/InterviewMeTitle.png]
+![alt text][interviewMeTitle.png]
+[InterviewMeTitle.png] = InterviewMe/InterviewMeTitle.png
 
 ## Inspiration
 - As college students, we realize the challenge an interview can present and wanted to help other students prep for the upcoming interviews and first impressions ahead of them.
