@@ -5,8 +5,10 @@
     <string name="enter_message">Enter Message</string>
     <string name="message">Message</string>
     <string name="send">Send</string>
-    <string name="type_of_interview">Type of Interview</string>
+    <string name="type_of_interview">What type of interview would you like to practice?</string>
     <string name="sample_text">Sample TEXT</string>
+    <string name="coding_questions_and_answers">Coding Questions and Answers</string>
+    <string name="alexa_skill">Alexa Skill</string>
     <string-array name="Types">
         <item>Technology</item>
         <item>Business</item>

@@ -1,5 +1,6 @@
 package hophacksproject.interviewme;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,7 +19,7 @@ public class Chatbot extends AppCompatActivity {
     Button sendBtn;
     EditText editText;
     TextView tv1, tv2;
-    Spinner typeInterview;
+
     int countClicks;
     ChatResponse chRes;
     char t;
@@ -38,11 +39,12 @@ public class Chatbot extends AppCompatActivity {
         editText = findViewById(R.id.editText);
         sendBtn = findViewById(R.id.sendBtn);
 
-        typeInterview = findViewById(R.id.TypeInterviewSpinner);
         tv2 = findViewById(R.id.response);
         tv2.setText("");
 
-        String type = typeInterview.getSelectedItem().toString();
+        Intent mIntent = getIntent();
+        Bundle extras = mIntent.getExtras();
+        String type = extras.getString("type");
 
         switch (type) {
             case "Technology":
@@ -72,6 +74,7 @@ public class Chatbot extends AppCompatActivity {
                 TextView textView = new TextView(getApplicationContext());
 
                 textView.setText(text);
+                textView.setTextSize(18);
                 textView.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
                 linearLayout.addView(textView);
 
@@ -80,22 +83,26 @@ public class Chatbot extends AppCompatActivity {
 
                 textView2.setTextColor(getResources().getColor(R.color.colorPrimary));
                 textView2.setGravity(Gravity.RIGHT);
+                textView2.setTextSize(18);
+
+                String text2 = "";
                 //start interview with 3 general questions, then questions tailored to a specific
                 // type of interview
                 if (countClicks == 0) {
                     String name = editText.getText().toString();
                     chRes = new ChatResponse(name, t);
-                    textView2.setText(textView2.getText() + "\n\n" + chRes.beginInterview());
+                    text2 += "\n\n" + chRes.beginInterview();
 
                 } else if (countClicks < 3) {
-                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
-                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.askGenQuestion());
+                    text2 += "\n\n" + chRes.analyzeResponse(text);
+                    text2 += "\n\n" + chRes.askGenQuestion();
 
                 } else {
-                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.analyzeResponse(text));
-                    textView2.setText(textView2.getText().toString() + "\n\n" + chRes.askTypeQuestion());
+                    text2 += "\n\n" + chRes.analyzeResponse(text);
+                    text2 += "\n\n" + chRes.askTypeQuestion();
 
                 }
+                textView2.setText(text2);
                 linearLayout.addView(textView2);
                 editText.setText("");
                 countClicks++;
