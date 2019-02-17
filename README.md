@@ -1,6 +1,4 @@
-# InterviewMe
-
-
+![alt text](https://github.com/arschilke/InterviewMe/blob/master/InterviewMeTitleSmall.png)
 ## Inspiration
 - As college students, we realize the challenge an interview can present and wanted to help other students prep for the upcoming interviews and first impressions ahead of them.
 
@@ -12,7 +10,7 @@
 - We used Android Studio and Alexa Skills Developer Kit to build our project
 - Built with java, node.js, and json
 
-## Chalennges we ran into
+## Challenges we ran into
 - Learning new languages and deciphering documentation were two challenges we overcame this weekend
 
 ## Accomplishments that we're proud of
