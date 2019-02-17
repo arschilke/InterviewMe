@@ -10,7 +10,7 @@
 - We used Android Studio and Alexa Skills Developer Kit to build our project
 - Built with java, node.js, and json
 
-## Chalennges we ran into
+## Challenges we ran into
 - Learning new languages and deciphering documentation were two challenges we overcame this weekend
 
 ## Accomplishments that we're proud of
