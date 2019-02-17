@@ -23,7 +23,7 @@
         <activity android:name=".AlexaConnect" />
         <activity android:name=".CodingQnAActivity" />
         <activity android:name=".InterviewSet" />
-        <activity android:name=".CodingWeb"></activity>
+        <activity android:name=".CodingWeb" android:theme="@style/AppThemeBar"></activity>
     </application>
 
 </manifest>

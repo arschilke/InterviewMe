@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -19,7 +20,7 @@ public class Chatbot extends AppCompatActivity {
     Button sendBtn;
     EditText editText;
     TextView tv1, tv2;
-
+    ScrollView scrollView;
     int countClicks;
     ChatResponse chRes;
     char t;
@@ -30,7 +31,7 @@ public class Chatbot extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chatbox);
 
-
+        scrollView = findViewById(R.id.scrollView2);
         countClicks = 0;
 
         tv1 = findViewById(R.id.transcript);
@@ -107,6 +108,12 @@ public class Chatbot extends AppCompatActivity {
                 editText.setText("");
                 countClicks++;
 
+                scrollView.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+                    }
+                });
             }
         });
     }
