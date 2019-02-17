@@ -1,4 +1,3 @@
-# InterviewMe
 ![alt text](https://github.com/arschilke/InterviewMe/blob/master/InterviewMeTitle.png)
 ## Inspiration
 - As college students, we realize the challenge an interview can present and wanted to help other students prep for the upcoming interviews and first impressions ahead of them.
