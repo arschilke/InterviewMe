@@ -22,7 +22,8 @@
         <activity android:name=".Tip" />
         <activity android:name=".AlexaConnect" />
         <activity android:name=".CodingQnAActivity" />
-        <activity android:name=".InterviewSet"></activity>
+        <activity android:name=".InterviewSet" />
+        <activity android:name=".CodingWeb"></activity>
     </application>
 
 </manifest>
