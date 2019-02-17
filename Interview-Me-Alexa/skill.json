@@ -1,0 +1,31 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "en-US": {
+          "summary": "Sample Short Description",
+          "examplePhrases": [
+            "Alexa open interview me",
+            "interview me",
+            "Alexa ask me interview questions"
+          ],
+          "name": "InterviewMe",
+          "description": "Say \"Alexa, open InterviewMe\" and get prepared to ace your next job/internship or college interview!\nInterviewMe can offer interview tips, sample interview questions, and even simulate an entire interview.\nTo start, just say \"Alexa, open Interview Me\" to start practicing. You can say things like \"interview tips\", \"ask me a coding question\", or \"simulate technical interview\". You can stop at any time by saying \"Alexa, stop.\""
+        }
+      },
+      "isAvailableWorldwide": true,
+      "testingInstructions": "Start the skill with 'Alexa, open interview me'. Then the options are tips and questions for 5 categories (general, coding, technical, business, and college) and full interview simulation for 4 categories (general, technical, business, and college).",
+      "category": "EDUCATION_AND_REFERENCE",
+      "distributionCountries": []
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "sourceDir": "lambda/custom",
+          "uri": "ask-custom-Interview-Me-default"
+        }
+      }
+    },
+    "manifestVersion": "1.0"
+  }
+}
